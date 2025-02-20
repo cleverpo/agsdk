@@ -1,0 +1,55 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+
+        maven {
+            url 'https://maven.gameanalytics.com/release';
+        }
+        maven {
+            url 'https://artifact.bytedance.com/repository/pangle/'
+        }
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+        }
+        maven {
+            url "https://android-sdk.is.com"
+        }
+    }
+}
+
+rootProject.name = "AGSdk"
+
+//生成agsdk库项目
+include ':agsdk'
+
+//aged库源项目
+//def AgedLibs = [
+//        "lib-base",
+//        "lib-firebase",
+//        "IAP6Helper",
+//        "lib-service",
+////        "lib-af",
+////        "lib-ga",
+////        "lib-cmp",
+////        "lib-admob",
+////        "lib-max",
+////        "lib-adjust",
+////        "lib-google-billing"
+////        "lib-fb-signin",
+////        "lib-google-signin"
+//]
+//for(name in AgedLibs){
+//    include ":$name"
+//    project(":$name").projectDir = new File(rootDir.absolutePath + "/../sources", "$name")
+//}

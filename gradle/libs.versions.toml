@@ -1,0 +1,128 @@
+[versions]
+version-maven-publish-plugin = "0.30.0"
+
+version-android-gradle-plugin = "8.5.0"
+version-google-services-plugin = "4.4.2"
+version-firebase-crashlytics-plugin = "3.0.2"
+
+version-fastjson = "1.1.76.android"
+version-utilcodex = "1.31.0"
+version-android-installreferrer="2.2"
+version-android-billing="7.1.1"
+version-androidx-core = "1.6.0"
+version-androidx-work-runtime = "2.7.0"
+version-androidx-lifecycle = "2.5.1"
+
+version-appsflyer = "6.15.0"
+version-appsflyer-adrevenue = "6.9.0"
+
+version-adjust = "5.0.1"
+version-adjust-android-huawei-referrer = "5.0.1"
+version-adjust-android-xiaomi-referrer = "5.0.1"
+version-adjust-android-meta-referrer = "5.0.1"
+
+version-google-firebase-bom="33.1.2"
+
+version-google-ump = "2.2.0"
+version-google-review="2.0.1"
+version-google-auth = "20.2.0"
+
+version-gameanalytics = "6.6.3"
+
+version-google-ads = "23.2.0"
+version-google-ads-mediation-facebook = "6.17.0.0"
+version-google-ads-mediation-pangle = "6.1.0.6.0"
+version-google-ads-mediation-applovin = "12.6.0.0"
+version-google-ads-identifier = "18.0.1"
+
+
+version-applovin = '13.0.1'
+version-applovin-google-adapter = '23.6.0.0'
+version-applovin-facebook-adapter = '6.18.0.1'
+version-applovin-unityads-adapter = '4.12.5.0'
+version-applovin-yandex-adapter = '7.8.0.0'
+version-applovin-mintegral-adapter = '16.8.91.0'
+version-applovin-fyber-adapter = '8.3.5.0'
+version-applovin-bytedance-adapter = '6.4.0.4.0'
+version-applovin-amazon-tam-adapter = '9.10.4.0'
+version-applovin-aps-sdk = '9.10.4'
+version-applovin-bigo-sdk = '5.1.0.0'
+version-applovin-inmobi-sdk = '10.8.0.0'
+version-applovin-picasso = '2.71828'
+version-applovin-ironsource-sdk = '8.5.0.0.0'
+version-applovin-vungle-sdk = '7.4.2.1'
+
+version-applovin-play-services-measurement-api = '20.1.2'
+version-recyclerview = '1.1.0'
+
+version-facebook = "latest.release"
+version-facebook-login = "latest.release"
+
+
+[plugins]
+maven-publish = {id = "com.vanniktech.maven.publish", version.ref="version-maven-publish-plugin"}
+android-application = {id = "com.android.application", version.ref="version-android-gradle-plugin"}
+android-library = {id = "com.android.library", version.ref="version-android-gradle-plugin"}
+
+google-services = {id = "com.google.gms.google-services", version.ref="version-google-services-plugin"}
+firebase-crashlytics = {id = "com.google.firebase.crashlytics", version.ref="version-firebase-crashlytics-plugin"}
+
+[libraries]
+android-installreferrer = {group="com.android.installreferrer", name="installreferrer", version.ref="version-android-installreferrer"}
+android-billing = {group="com.android.billingclient", name="billing", version.ref="version-android-billing"}
+androidx-core = {group="androidx.core", name="core", version.ref="version-androidx-core"}
+androidx-work-runtime = {group="androidx.work", name="work-runtime", version.ref="version-androidx-work-runtime"}
+androidx-lifecycle-process = {group="androidx.lifecycle", name="lifecycle-process", version.ref="version-androidx-lifecycle"}
+androidx-lifecycle-runtime = {group="androidx.lifecycle", name="lifecycle-runtime", version.ref="version-androidx-lifecycle"}
+androidx-lifecycle-compiler = {group="androidx.lifecycle", name="lifecycle-compiler", version.ref="version-androidx-lifecycle"}
+fastjson = {group="com.alibaba", name="fastjson", version.ref="version-fastjson"}
+utilcodex = {group="com.blankj", name="utilcodex", version.ref="version-utilcodex"}
+
+appsflyer = {group="com.appsflyer", name="af-android-sdk", version.ref="version-appsflyer"}
+appsflyer-adrevenue = { group = "com.appsflyer", name = "adrevenue", version.ref = "version-appsflyer-adrevenue" }
+
+adjust = {group="com.adjust.sdk", name="adjust-android", version.ref="version-adjust"}
+adjust-huawei-referrer = {group="com.adjust.sdk", name="adjust-android-huawei-referrer", version.ref="version-adjust-android-huawei-referrer"}
+adjust-xiaomi-referrer = {group="com.adjust.sdk", name="adjust-android-xiaomi-referrer", version.ref="version-adjust-android-xiaomi-referrer"}
+adjust-meta-referrer = {group="com.adjust.sdk", name="adjust-android-meta-referrer", version.ref="version-adjust-android-meta-referrer"}
+
+google-firebase-bom = {group="com.google.firebase", name="firebase-bom", version.ref="version-google-firebase-bom"}
+google-firebase-analytics = {group="com.google.firebase", name="firebase-analytics"}
+google-firebase-config = {group="com.google.firebase", name="firebase-config"}
+google-firebase-database = {group="com.google.firebase", name="firebase-database"}
+google-firebase-crashlytics = {group="com.google.firebase", name="firebase-crashlytics"}
+google-firebase-auth = {group="com.google.firebase", name="firebase-auth"}
+
+google-ump = {group="com.google.android.ump", name="user-messaging-platform", version.ref="version-google-ump"}
+google-review = {group="com.google.android.play", name="review", version.ref="version-google-review"}
+google-auth = {group="com.google.android.gms", name="play-services-auth", version.ref="version-google-auth"}
+
+gameanalytics = {group="com.gameanalytics.sdk", name="gameanalytics-android", version.ref="version-gameanalytics"}
+
+google-ads = {group = "com.google.android.gms", name="play-services-ads", version.ref="version-google-ads"}
+google-ads-meditation-facebook = {group = "com.google.ads.mediation", name="facebook", version.ref="version-google-ads-mediation-facebook"}
+google-ads-meditation-pangle = {group = "com.google.ads.mediation", name="pangle", version.ref="version-google-ads-mediation-pangle"}
+google-ads-meditation-applovin = {group = "com.google.ads.mediation", name="applovin", version.ref="version-google-ads-mediation-applovin"}
+google-ads-identifier = {group = "com.google.android.gms", name="play-services-ads-identifier", version.ref="version-google-ads-identifier"}
+
+facebook = {group="com.facebook.android", name="facebook-android-sdk", version.ref="version-facebook"}
+facebook-login = {group="com.facebook.android", name="facebook-login", version.ref="version-facebook-login"}
+
+applovin = { group = "com.applovin", name = "applovin-sdk", version.ref = "version-applovin" }
+applovin-google-adapter = { group = "com.applovin.mediation", name = "google-adapter", version.ref = "version-applovin-google-adapter" }
+applovin-facebook-adapter = { group = "com.applovin.mediation", name = "facebook-adapter", version.ref = "version-applovin-facebook-adapter" }
+applovin-unityads-adapter = { group = "com.applovin.mediation", name = "unityads-adapter", version.ref = "version-applovin-unityads-adapter" }
+applovin-yandex-adapter = { group = "com.applovin.mediation", name = "yandex-adapter", version.ref = "version-applovin-yandex-adapter" }
+applovin-mintegral-adapter = { group = "com.applovin.mediation", name = "mintegral-adapter", version.ref = "version-applovin-mintegral-adapter" }
+applovin-fyber-adapter = { group = "com.applovin.mediation", name = "fyber-adapter", version.ref = "version-applovin-fyber-adapter" }
+applovin-bytedance-adapter = { group = "com.applovin.mediation", name = "bytedance-adapter", version.ref = "version-applovin-bytedance-adapter" }
+applovin-amazon-tam-adapter = { group = "com.applovin.mediation", name = "amazon-tam-adapter", version.ref = "version-applovin-amazon-tam-adapter" }
+applovin-aps-sdk = { group = "com.amazon.android", name = "aps-sdk", version.ref = "version-applovin-aps-sdk" }
+applovin-bigo-adapter = { group = "com.applovin.mediation", name = "bigoads-adapter", version.ref = "version-applovin-bigo-sdk" }
+applovin-inmobi-adapter= { group = "com.applovin.mediation", name = "inmobi-adapter", version.ref = "version-applovin-inmobi-sdk" }
+applovin-ironsource-adapter = { group = "com.applovin.mediation", name = "ironsource-adapter", version.ref = "version-applovin-ironsource-sdk" }
+applovin-vungle-adapter = { group = "com.applovin.mediation", name = "vungle-adapter", version.ref = "version-applovin-vungle-sdk" }
+
+picasso = {group = "com.squareup.picasso", name = "picasso", version.ref = "version-applovin-picasso"}
+recyclerview = {group = "androidx.recyclerview", name = "recyclerview", version.ref = "version-recyclerview"}
+play-services-measurement-api = { group = "com.google.android.gms", name = "play-services-measurement-api", version.ref = "version-applovin-play-services-measurement-api" }
