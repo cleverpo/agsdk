@@ -86,10 +86,10 @@ publishing {
     repositories {
         maven {
             name "GithubPackages"
-            url uri("https://maven.pkg.github.com/cleverpo/agsdk")
+            url uri(MAVEN_REPOSITORY_URL)
             credentials {
-                username = "cleverpo"
-                password = "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"
+                username = MAVEN_USERNAME
+                password = MAVEN_PASSWORD
             }
         }
         mavenLocal()

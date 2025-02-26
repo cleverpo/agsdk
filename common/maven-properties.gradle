@@ -1,6 +1,6 @@
 ext{
-    MAVEN_USERNAME="xMIfi2eW"
-    MAVEN_PASSWORD="RJF8eoPM+vGCcn5/Dl77CdUfiuFcyDhVQyW71m2s60IS"
-    MAVEN_REPOSITORY_URL="https://oss.sonatype.org/content/repositories/snapshots/"
+    MAVEN_USERNAME=""           //maven的用户名
+    MAVEN_PASSWORD=""           //maven access token或密码
+    MAVEN_REPOSITORY_URL=""     //maven 地址
     MAVEN_GROUP_ID="com.agedstudio"
 }
