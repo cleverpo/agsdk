@@ -1,0 +1,44 @@
+plugins{
+    alias libs.plugins.android.library
+    id 'maven-publish'
+}
+
+android {
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    namespace "com.samsung.android.sdk.iap.lib"
+    archivesBaseName="agsdk-iap6"
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    buildFeatures {
+        aidl true
+    }
+
+    sourceSets {
+        main {
+            aidl.srcDirs = ["src/main/aidl"]
+        }
+    }
+}
+
+dependencies {
+}
+
+ext{
+    MAVEN_ARTIFACT_ID="agsdk-iap6"
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="agsdk-iap6-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"

@@ -1,0 +1,97 @@
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId MAVEN_GROUP_ID
+            artifactId MAVEN_ARTIFACT_ID
+            version MAVEN_VERSION
+            artifact("$buildDir/outputs/aar/${MAVEN_ARTIFACT}")
+
+            // 添加依赖项到 POM
+            pom {
+                name.set("SDK name")
+                description.set("Description of library")
+                url.set("http://www.url.co")
+
+                withXml {
+                    final root = asNode();
+                    final dependenciesNode = root.appendNode('dependencies')
+                    final dependencyManagementNode = root.appendNode('dependencyManagement')
+                    final dependenciesInManagementNode = dependencyManagementNode.appendNode('dependencies')
+
+                    ext.addDependency = { Dependency dep, String scope ->
+                        println(dep)
+                        if (dep.group == null || dep.name == null || dep.name == "unspecified")
+                            return
+
+                        final dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', dep.group)
+                        dependencyNode.appendNode('artifactId', dep.name)
+                        if(dep.version != null){
+                            dependencyNode.appendNode('version', dep.version)
+                        }
+                        dependencyNode.appendNode('scope', scope)
+                    }
+
+//                    project.rootProject.subprojects.each { subproject ->
+//                        println(subproject)
+//                        subproject.configurations['api'].allDependencies.each { dep ->
+//                            if(dep instanceof ExternalModuleDependency){
+//                                println(dep)
+//                                // 处理 platform 依赖
+//                                String category = dep.getAttributes().getAttribute(Category.CATEGORY_ATTRIBUTE)
+//                                if (Category.ENFORCED_PLATFORM == category || Category.REGULAR_PLATFORM == category) {
+//                                    final platformDependencyNode = dependenciesInManagementNode.appendNode('dependency')
+//                                    platformDependencyNode.appendNode('groupId', dep.group)
+//                                    platformDependencyNode.appendNode('artifactId', dep.name)
+//                                    platformDependencyNode.appendNode('version', dep.version)
+//                                    platformDependencyNode.appendNode('type', 'pom')
+//                                    platformDependencyNode.appendNode('scope', 'import')
+//                                } else {
+//                                    addDependency(dep, "compile")
+//                                }
+//                            }
+//                        }
+//                        subproject.configurations['implementation'].getDependencies().each { dep ->
+//                            if(dep instanceof ExternalModuleDependency) {
+//                                addDependency(dep, "runtime")
+//                            }
+//                        }
+//                    }
+                    project.configurations['api'].allDependencies.each { dep ->
+                        if(dep instanceof ExternalModuleDependency){
+                            println(dep)
+                            // 处理 platform 依赖
+                            String category = dep.getAttributes().getAttribute(Category.CATEGORY_ATTRIBUTE)
+                            if (Category.ENFORCED_PLATFORM == category || Category.REGULAR_PLATFORM == category) {
+                                final platformDependencyNode = dependenciesInManagementNode.appendNode('dependency')
+                                platformDependencyNode.appendNode('groupId', dep.group)
+                                platformDependencyNode.appendNode('artifactId', dep.name)
+                                platformDependencyNode.appendNode('version', dep.version)
+                                platformDependencyNode.appendNode('type', 'pom')
+                                platformDependencyNode.appendNode('scope', 'import')
+                            } else {
+                                addDependency(dep, "compile")
+                            }
+                        }
+                    }
+                    project.configurations['implementation'].getDependencies().each { dep ->
+                        if(dep instanceof ExternalModuleDependency) {
+                            addDependency(dep, "runtime")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name "GithubPackages"
+            url uri("https://maven.pkg.github.com/cleverpo/agsdk")
+            credentials {
+                username = "cleverpo"
+                password = "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"
+            }
+        }
+        mavenLocal()
+    }
+}

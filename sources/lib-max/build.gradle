@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    namespace "com.agedstudio.max"
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+
+    implementation libs.play.services.measurement.api
+    implementation libs.picasso
+    implementation libs.recyclerview
+
+    /***************************** max *****************************/
+    implementation libs.applovin
+    // Google bidding
+    implementation libs.applovin.google.adapter
+    // Meta
+    implementation libs.applovin.facebook.adapter
+    // Unity
+    implementation libs.applovin.unityads.adapter
+    // Yandex
+    implementation libs.applovin.yandex.adapter
+    // Mintegral
+    implementation libs.applovin.mintegral.adapter
+    // DT
+    implementation libs.applovin.fyber.adapter
+    // Pangle
+    implementation libs.applovin.bytedance.adapter
+    // APS
+    implementation libs.applovin.amazon.tam.adapter
+    implementation libs.applovin.aps.sdk
+    //bigo
+    implementation libs.applovin.bigo.adapter
+    //inmobi
+    implementation libs.applovin.inmobi.adapter
+    //ironsource
+    implementation libs.applovin.ironsource.adapter
+    //Liftoff
+    implementation libs.applovin.vungle.adapter
+
+    /***************************** max *****************************/
+}
+
+def archivesName = "agsdk-max"
+base.archivesBaseName archivesName
+ext{
+    MAVEN_ARTIFACT_ID=archivesName
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="${archivesName}-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"

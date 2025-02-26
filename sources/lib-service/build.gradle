@@ -1,0 +1,54 @@
+plugins{
+    alias libs.plugins.android.library
+    id 'maven-publish'
+}
+
+android {
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    namespace "com.agedstudio.libsdk"
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+
+//    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"//2.2.0后已经没有这个包，拆散到其他包里
+    implementation libs.androidx.lifecycle.process
+    implementation libs.androidx.lifecycle.runtime
+    annotationProcessor libs.androidx.lifecycle.compiler
+
+    implementation libs.android.installreferrer
+    //内评价
+    implementation libs.google.review
+}
+
+def archivesName = "agsdk-service"
+base.archivesBaseName archivesName
+ext{
+    MAVEN_ARTIFACT_ID=archivesName
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="${archivesName}-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"

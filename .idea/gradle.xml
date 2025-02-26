@@ -10,6 +10,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/agsdk" />
+            <option value="$PROJECT_DIR$/sources/lib-adjust" />
+            <option value="$PROJECT_DIR$/sources/lib-af" />
+            <option value="$PROJECT_DIR$/sources/lib-base" />
+            <option value="$PROJECT_DIR$/sources/lib-cmp" />
+            <option value="$PROJECT_DIR$/sources/lib-firebase" />
+            <option value="$PROJECT_DIR$/sources/lib-ga" />
+            <option value="$PROJECT_DIR$/sources/lib-google-billing" />
+            <option value="$PROJECT_DIR$/sources/lib-max" />
+            <option value="$PROJECT_DIR$/sources/lib-service" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

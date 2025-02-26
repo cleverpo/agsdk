@@ -1,0 +1,49 @@
+plugins{
+    alias libs.plugins.android.library
+    id 'maven-publish'
+}
+
+android {
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    namespace "com.agedstudio.adjust"
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+
+    implementation libs.adjust
+    implementation libs.android.installreferrer
+    implementation libs.adjust.huawei.referrer
+    implementation libs.adjust.xiaomi.referrer
+    implementation libs.adjust.meta.referrer
+
+    implementation libs.google.ads.identifier;
+}
+
+def archivesName = "agsdk-adjust"
+base.archivesBaseName archivesName
+ext{
+    MAVEN_ARTIFACT_ID=archivesName
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="${archivesName}-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"

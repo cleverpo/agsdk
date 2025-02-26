@@ -1,0 +1,59 @@
+task assembleLibs {
+    description="打包libs"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name != 'agsdk'
+    }.collect {
+        ":${it.name}:assembleRelease"  // 直接使用任务路径
+    }
+}
+
+task assembleAgsdk {
+    description="打包agsdk"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name == 'agsdk'
+    }.collect {
+        ":${it.name}:assembleRelease"  // 直接使用任务路径
+    }
+}
+
+task publishLibsLocal {
+    description="发布本地libs"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name != 'agsdk'
+    }.collect {
+        ":${it.name}:publishToMavenLocal"  // 直接使用任务路径
+    }
+}
+
+task publishAgsdkLocal {
+    description="发布本地agsdk"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name == 'agsdk'
+    }.collect {
+        ":${it.name}:publishToMavenLocal"  // 直接使用任务路径
+    }
+}
+
+task publishLibs {
+    description="发布libs"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name != 'agsdk'
+    }.collect {
+        ":${it.name}:publish"  // 直接使用任务路径
+    }
+}
+
+task publishAgsdk {
+    description="发布agsdk"
+    group="quik"
+    dependsOn subprojects.findAll {
+        it.name == 'agsdk'
+    }.collect {
+        ":${it.name}:publish"  // 直接使用任务路径
+    }
+}

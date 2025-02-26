@@ -1,6 +1,4 @@
 [versions]
-version-maven-publish-plugin = "0.30.0"
-
 version-android-gradle-plugin = "8.5.0"
 version-google-services-plugin = "4.4.2"
 version-firebase-crashlytics-plugin = "3.0.2"
@@ -58,9 +56,18 @@ version-recyclerview = '1.1.0'
 version-facebook = "latest.release"
 version-facebook-login = "latest.release"
 
+version-agsdk-base="0.0.1-alpha"
+version-agsdk-service="0.0.1-alpha"
+version-agsdk-firebase="0.0.1-alpha"
+version-agsdk-af="0.0.1-alpha"
+version-agsdk-ga="0.0.1-alpha"
+version-agsdk-adjust="0.0.1-alpha"
+version-agsdk-cmp="0.0.1-alpha"
+version-agsdk-max="0.0.1-alpha"
+version-agsdk-gp-billing="0.0.1-alpha"
+
 
 [plugins]
-maven-publish = {id = "com.vanniktech.maven.publish", version.ref="version-maven-publish-plugin"}
 android-application = {id = "com.android.application", version.ref="version-android-gradle-plugin"}
 android-library = {id = "com.android.library", version.ref="version-android-gradle-plugin"}
 
@@ -126,3 +133,14 @@ applovin-vungle-adapter = { group = "com.applovin.mediation", name = "vungle-ada
 picasso = {group = "com.squareup.picasso", name = "picasso", version.ref = "version-applovin-picasso"}
 recyclerview = {group = "androidx.recyclerview", name = "recyclerview", version.ref = "version-recyclerview"}
 play-services-measurement-api = { group = "com.google.android.gms", name = "play-services-measurement-api", version.ref = "version-applovin-play-services-measurement-api" }
+
+
+agsdk-base={ group = "com.agedstudio", name = "agsdk-base", version.ref = "version-agsdk-base" }
+agsdk-service={ group = "com.agedstudio", name = "agsdk-service", version.ref = "version-agsdk-service" }
+agsdk-firebase={ group = "com.agedstudio", name = "agsdk-firebase", version.ref = "version-agsdk-firebase" }
+agsdk-af={ group = "com.agedstudio", name = "agsdk-af", version.ref = "version-agsdk-af" }
+agsdk-ga={ group = "com.agedstudio", name = "agsdk-ga", version.ref = "version-agsdk-ga" }
+agsdk-adjust={ group = "com.agedstudio", name = "agsdk-adjust", version.ref = "version-agsdk-adjust" }
+agsdk-cmp={ group = "com.agedstudio", name = "agsdk-cmp", version.ref = "version-agsdk-cmp" }
+agsdk-max={ group = "com.agedstudio", name = "agsdk-max", version.ref = "version-agsdk-max" }
+agsdk-gp-billing={ group = "com.agedstudio", name = "agsdk-gp-billing", version.ref = "version-agsdk-gp-billing" }

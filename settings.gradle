@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
         google()
         jcenter()
+        mavenLocal()
 
         maven {
             url 'https://maven.gameanalytics.com/release';
@@ -34,22 +35,21 @@ rootProject.name = "AGSdk"
 include ':agsdk'
 
 //aged库源项目
-//def AgedLibs = [
-//        "lib-base",
-//        "lib-firebase",
-//        "IAP6Helper",
-//        "lib-service",
-////        "lib-af",
-////        "lib-ga",
-////        "lib-cmp",
-////        "lib-admob",
-////        "lib-max",
-////        "lib-adjust",
-////        "lib-google-billing"
-////        "lib-fb-signin",
-////        "lib-google-signin"
-//]
-//for(name in AgedLibs){
-//    include ":$name"
-//    project(":$name").projectDir = new File(rootDir.absolutePath + "/../sources", "$name")
-//}
+def AgedLibs = [
+        "lib-base",
+        "lib-service",
+        "lib-firebase",
+        "lib-af",
+        "lib-ga",
+        "lib-adjust",
+        "lib-cmp",
+//        "lib-admob",
+        "lib-max",
+        "lib-google-billing"
+//        "lib-fb-signin",
+//        "lib-google-signin"
+]
+for(name in AgedLibs){
+    include ":$name"
+    project(":$name").projectDir = new File(rootDir.absolutePath + "/sources", "$name")
+}

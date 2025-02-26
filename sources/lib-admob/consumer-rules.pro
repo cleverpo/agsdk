@@ -1,0 +1,3 @@
+-dontwarn com.bytedance.**
+-keep public class com.google.android.gms.** { public protected *; }
+-keep class com.bytedance.sdk.** { *; }

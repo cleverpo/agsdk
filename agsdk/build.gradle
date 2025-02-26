@@ -21,6 +21,13 @@ android {
         buildConfigField "String", "AmazonAppId", "\"aea4afe6-2e06-49b2-b75f-fa566e85cf5b\""
         buildConfigField "String", "FbAppId", "\"1969399046890728\""
 
+        buildConfigField "boolean", "enableAppsFlyer", "true"
+        buildConfigField "boolean", "enableGameAnalytics", "true"
+        buildConfigField "boolean", "enableAdjust", "true"
+        buildConfigField "boolean", "enableCMP", "true"
+        buildConfigField "boolean", "enableMax", "true"
+        buildConfigField "boolean", "enableGoogleBilling", "true"
+
         manifestPlaceholders = [
             ADMOB_APPID: "ca-app-pub-7874178828524240~3364699435",
             APPLOVIN_KEY: "0r7Ghr3TndKf9yf9wwmxZdtdUn96r_TwXKzNJq-hvmdnQ5fVMXUQqhQtfxTNVJZ6U6BgOMf3pq9qp2JZ63ADoQ",
@@ -42,18 +49,25 @@ android {
         buildConfig true
     }
 
+    flavorDimensions += "feature"
+    productFlavors {
+        all {
+            dimension "feature"
+            buildConfigField "boolean", "enableAppsFlyer", "true"
+            buildConfigField "boolean", "enableGameAnalytics", "true"
+            buildConfigField "boolean", "enableAdjust", "true"
+            buildConfigField "boolean", "enableCMP", "true"
+            buildConfigField "boolean", "enableMax", "true"
+            buildConfigField "boolean", "enableGoogleBilling", "true"
+        }
+    }
+
     sourceSets.main {
         java.srcDirs = [
                 "src",
-                "${LIB_SOURCES_DIR}/lib-base/src",
-                "${LIB_SOURCES_DIR}/lib-service/src",
-                "${LIB_SOURCES_DIR}/lib-firebase/src",
         ]
         res.srcDirs = [
                 'res',
-                "${LIB_SOURCES_DIR}/lib-base/res",
-                "${LIB_SOURCES_DIR}/lib-service/res",
-                "${LIB_SOURCES_DIR}/lib-firebase/res"
         ]
         manifest.srcFile "AndroidManifest.xml"
 //        [
@@ -62,52 +76,33 @@ android {
 //                "${LIB_SOURCES_DIR}/lib-firebase/AndroidManifest.xml"
 //        ]
     }
-}
 
-dependencies {
-    //base start
-    // fastjson
-    api libs.fastjson
-    // blankj
-    api libs.utilcodex
-    //base end
-
-    //service start
-    implementation libs.androidx.lifecycle.process
-    implementation libs.androidx.lifecycle.runtime
-    annotationProcessor libs.androidx.lifecycle.compiler
-
-    implementation libs.android.installreferrer
-    //内评价
-    implementation libs.google.review
-    //service end
-
-    //firebase start
-    // Import the BoM for the Firebase platform
-    api platform(libs.google.firebase.bom)
-    // Declare the dependency for the Analytics library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-//    api libs.google.firebase.analytics
-    api libs.google.firebase.analytics
-    // firebase-config
-    implementation libs.google.firebase.config
-    // firebase database
-    implementation libs.google.firebase.database
-    // firebase-crashlytics
-    implementation libs.google.firebase.crashlytics
-    //firebase end
-}
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = MAVEN_GROUP_ID
-            artifactId = MAVEN_ARTIFACT_ID
-            version = MAVEN_VERSION
-
-            afterEvaluate {
-                from components.release
-            }
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            def buildType = variant.buildType.name
+            outputFileName = "agsdk-all-${buildType}.aar"
         }
     }
 }
+
+dependencies {
+    api libs.agsdk.base
+    api libs.agsdk.service
+    api libs.agsdk.firebase
+    api libs.agsdk.af
+    api libs.agsdk.ga
+    api libs.agsdk.adjust
+    api libs.agsdk.cmp
+    api libs.agsdk.max
+    api libs.agsdk.gp.billing
+}
+
+
+apply from: "../common/maven-properties.gradle"
+ext{
+    MAVEN_ARTIFACT_ID="agsdk-all"
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="agsdk-all-release.aar"
+}
+
+apply from: "../common/maven-local.gradle"

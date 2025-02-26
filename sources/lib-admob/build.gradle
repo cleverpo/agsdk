@@ -1,0 +1,36 @@
+plugins {
+    alias libs.plugins.android.library
+}
+
+android {
+    namespace "com.agedstudio.admob"
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles "consumer-rules.pro"
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+    implementation project(':lib-firebase')
+    implementation project(':lib-af')
+    implementation project(':lib-adjust')
+
+    // ad
+    implementation libs.google.ads
+    // facebook
+    implementation libs.google.ads.meditation.facebook
+    // pangle中介
+    implementation libs.google.ads.meditation.pangle
+    // applovin
+    implementation libs.google.ads.meditation.applovin
+}

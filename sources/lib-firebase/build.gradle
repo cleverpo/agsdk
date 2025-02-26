@@ -1,0 +1,58 @@
+plugins{
+    alias libs.plugins.android.library
+    id 'maven-publish'
+}
+
+android {
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    namespace "com.agedstudio.firebase"
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+    // Import the BoM for the Firebase platform
+    api platform(libs.google.firebase.bom)
+    // Declare the dependency for the Analytics library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+//    api libs.google.firebase.analytics
+    api libs.google.firebase.analytics
+    // firebase-config
+    implementation libs.google.firebase.config
+    // firebase database
+    implementation libs.google.firebase.database
+    // firebase-crashlytics
+    implementation libs.google.firebase.crashlytics
+    // firebase-auth
+//    implementation libs.google.firebase.auth
+//    implementation(libs.google.firebase.auth) {
+//        exclude module: "play-services-safetynet"
+//    }
+}
+
+def archivesName = "agsdk-firebase"
+base.archivesBaseName archivesName
+ext{
+    MAVEN_ARTIFACT_ID=archivesName
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="${archivesName}-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"

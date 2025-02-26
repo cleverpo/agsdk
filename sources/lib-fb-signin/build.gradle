@@ -1,0 +1,26 @@
+plugins {
+    alias libs.plugins.android.library
+}
+
+android {
+    namespace "com.agedstudio.fbsign"
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':lib-base')
+    // facebook
+//    implementation libs.facebook.login
+    implementation libs.facebook
+}

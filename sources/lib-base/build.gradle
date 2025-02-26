@@ -1,0 +1,44 @@
+plugins{
+    alias libs.plugins.android.library
+    id 'maven-publish'
+}
+
+android {
+    compileSdk PROP_COMPILE_SDK_VERSION.toInteger()
+
+    namespace "com.agedstudio.base"
+
+    defaultConfig {
+        minSdkVersion PROP_MIN_SDK_VERSION
+        targetSdkVersion PROP_TARGET_SDK_VERSION
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // fastjson
+    api libs.fastjson
+    // blankj
+    api libs.utilcodex
+}
+
+def archivesName = "agsdk-base"
+base.archivesBaseName archivesName
+ext{
+    MAVEN_ARTIFACT_ID=archivesName
+    MAVEN_VERSION="0.0.1-alpha"
+    MAVEN_ARTIFACT="${archivesName}-release.aar"
+}
+apply from: "../../common/maven-properties.gradle"
+apply from: "../../common/maven-local.gradle"
